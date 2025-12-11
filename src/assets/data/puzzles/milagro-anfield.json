@@ -1,0 +1,70 @@
+{
+  "nombre": "El Milagro de Anfield",
+  "descripcion": "Liverpool 4-0 Barcelona, Champions 2019. Córner rápido de Alexander-Arnold.",
+  "fecha": "2019-05-07",
+  "objetivo": "Recrea el córner rápido que resultó en el gol de Origi",
+  "dificultad": "Media",
+  "escenario": {
+    "situacion": "Córner a favor del Liverpool, minuto 79, marcador 3-0",
+    "tiempo": "79'",
+    "marcador": "3-0"
+  },
+  "jugadores": [
+    {
+      "id": "arnold",
+      "nombre": "T. Alexander-Arnold",
+      "posicion": { "x": 90, "y": 20 },
+      "stats": { "pase": 88, "remate": 75, "defensa": 72, "velocidad": 80 },
+      "rol": "corner_taker"
+    },
+    {
+      "id": "origi",
+      "nombre": "D. Origi",
+      "posicion": { "x": 85, "y": 40 },
+      "stats": { "pase": 72, "remate": 82, "defensa": 40, "velocidad": 78 },
+      "rol": "scorer"
+    },
+    {
+      "id": "wijnaldum",
+      "nombre": "G. Wijnaldum",
+      "posicion": { "x": 80, "y": 50 },
+      "stats": { "pase": 81, "remate": 78, "defensa": 75, "velocidad": 76 },
+      "rol": "support"
+    },
+    {
+      "id": "pique",
+      "nombre": "G. Piqué",
+      "posicion": { "x": 82, "y": 55 },
+      "stats": { "pase": 75, "remate": 60, "defensa": 88, "velocidad": 65 },
+      "rol": "defender"
+    },
+    {
+      "id": "lenglet",
+      "nombre": "C. Lenglet",
+      "posicion": { "x": 78, "y": 48 },
+      "stats": { "pase": 73, "remate": 58, "defensa": 84, "velocidad": 68 },
+      "rol": "defender"
+    }
+  ],
+  "solucion_optima": {
+    "ruta": ["arnold", "origi"],
+    "descripcion": "Córner rápido directo de Alexander-Arnold a Origi que estaba desmarcado",
+    "costo": 12.5,
+    "tiempo_segundos": 3,
+    "exito": true
+  },
+  "soluciones_alternativas": [
+    {
+      "ruta": ["arnold", "wijnaldum", "origi"],
+      "descripcion": "Pase a Wijnaldum primero, luego a Origi",
+      "costo": 25.8,
+      "efectividad": 75
+    }
+  ],
+  "contexto_historico": "El Liverpool necesitaba remontar un 3-0 del Camp Nou. En el minuto 79, con 3-0 parcial, Alexander-Arnold ejecutó un córner rápido mientras los defensores del Barcelona estaban distraídos, encontrando a Origi completamente solo.",
+  "recompensas": {
+    "3_estrellas": "Ruta idéntica a la histórica (arnold → origi)",
+    "2_estrellas": "Solución en 3 toques o menos",
+    "1_estrella": "Solución en 4-5 toques"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "nombre": "Argentina vs Francia - Ejemplo",
+  "fecha": "2022-12-18",
+  "resultado": "3-3",
+  "equipos": {
+    "argentina": {
+      "nombre": "Argentina",
+      "alineacion": ["arg_messi", "arg_dimaria", "arg_alvarez", "arg_martinez"],
+      "jugadores": [
+        { "id": "arg_martinez", "nombre": "E. Martínez", "posicion": { "x": 10, "y": 50 }, "stats": { "pase": 70, "remate": 40, "defensa": 88, "velocidad": 60 } },
+        { "id": "arg_molina", "nombre": "N. Molina", "posicion": { "x": 25, "y": 70 }, "stats": { "pase": 75, "remate": 60, "defensa": 78, "velocidad": 82 } },
+        { "id": "arg_romero", "nombre": "C. Romero", "posicion": { "x": 25, "y": 55 }, "stats": { "pase": 68, "remate": 55, "defensa": 85, "velocidad": 72 } },
+        { "id": "arg_otamendi", "nombre": "N. Otamendi", "posicion": { "x": 25, "y": 45 }, "stats": { "pase": 70, "remate": 58, "defensa": 83, "velocidad": 65 } },
+        { "id": "arg_tagliafico", "nombre": "N. Tagliafico", "posicion": { "x": 25, "y": 30 }, "stats": { "pase": 77, "remate": 62, "defensa": 80, "velocidad": 79 } },
+        { "id": "arg_depaul", "nombre": "R. De Paul", "posicion": { "x": 50, "y": 70 }, "stats": { "pase": 82, "remate": 72, "defensa": 75, "velocidad": 78 } },
+        { "id": "arg_fernandez", "nombre": "E. Fernández", "posicion": { "x": 50, "y": 55 }, "stats": { "pase": 85, "remate": 70, "defensa": 77, "velocidad": 72 } },
+        { "id": "arg_macallister", "nombre": "A. Mac Allister", "posicion": { "x": 50, "y": 45 }, "stats": { "pase": 84, "remate": 75, "defensa": 68, "velocidad": 76 } },
+        { "id": "arg_dimaria", "nombre": "Á. Di María", "posicion": { "x": 50, "y": 30 }, "stats": { "pase": 87, "remate": 85, "defensa": 45, "velocidad": 83 } },
+        { "id": "arg_messi", "nombre": "L. Messi", "posicion": { "x": 80, "y": 55 }, "stats": { "pase": 95, "remate": 94, "defensa": 35, "velocidad": 85 } },
+        { "id": "arg_alvarez", "nombre": "J. Álvarez", "posicion": { "x": 80, "y": 45 }, "stats": { "pase": 78, "remate": 86, "defensa": 48, "velocidad": 88 } }
+      ],
+      "pases": [
+        { "origen": "arg_messi", "destino": "arg_fernandez", "cantidad": 28 },
+        { "origen": "arg_messi", "destino": "arg_dimaria", "cantidad": 22 },
+        { "origen": "arg_fernandez", "destino": "arg_macallister", "cantidad": 18 },
+        { "origen": "arg_depaul", "destino": "arg_molina", "cantidad": 15 }
+      ]
+    },
+    "francia": {
+      "nombre": "Francia",
+      "alineacion": ["fra_mbappe", "fra_hernandez", "fra_varane", "fra_lloris"],
+      "jugadores": [
+        { "id": "fra_lloris", "nombre": "H. Lloris", "posicion": { "x": 90, "y": 50 }, "stats": { "pase": 65, "remate": 30, "defensa": 85, "velocidad": 60 } },
+        { "id": "fra_pavard", "nombre": "B. Pavard", "posicion": { "x": 75, "y": 70 }, "stats": { "pase": 70, "remate": 50, "defensa": 80, "velocidad": 75 } },
+        { "id": "fra_upamecano", "nombre": "D. Upamecano", "posicion": { "x": 75, "y": 55 }, "stats": { "pase": 68, "remate": 45, "defensa": 82, "velocidad": 70 } },
+        { "id": "fra_varane", "nombre": "R. Varane", "posicion": { "x": 75, "y": 45 }, "stats": { "pase": 72, "remate": 40, "defensa": 84, "velocidad": 68 } },
+        { "id": "fra_hernandez", "nombre": "L. Hernández", "posicion": { "x": 75, "y": 30 }, "stats": { "pase": 74, "remate": 52, "defensa": 78, "velocidad": 80 } },
+        { "id": "fra_tchouameni", "nombre": "A. Tchouaméni", "posicion": { "x": 50, "y": 70 }, "stats": { "pase": 80, "remate": 60, "defensa": 76, "velocidad": 74 } },
+        { "id": "fra_pogba", "nombre": "P. Pogba", "posicion": { "x": 50, "y": 55 }, "stats": { "pase": 82, "remate": 70, "defensa": 72, "velocidad": 72 } },
+        { "id": "fra_kante", "nombre": "N. Kanté", "posicion": { "x": 50, "y": 45 }, "stats": { "pase": 85, "remate": 65, "defensa": 86, "velocidad": 74 } },
+        { "id": "fra_griezmann", "nombre": "A. Griezmann", "posicion": { "x": 50, "y": 30 }, "stats": { "pase": 86, "remate": 80, "defensa": 60, "velocidad": 70 } },
+        { "id": "fra_mbappe", "nombre": "K. Mbappé", "posicion": { "x": 20, "y": 55 }, "stats": { "pase": 88, "remate": 95, "defensa": 40, "velocidad": 95 } },
+        { "id": "fra_benzema", "nombre": "K. Benzema", "posicion": { "x": 20, "y": 45 }, "stats": { "pase": 84, "remate": 92, "defensa": 50, "velocidad": 78 } }
+      ],
+      "pases": [
+        { "origen": "fra_griezmann", "destino": "fra_mbappe", "cantidad": 24 },
+        { "origen": "fra_kante", "destino": "fra_pogba", "cantidad": 18 }
+      ]
+    }
+  }
+}

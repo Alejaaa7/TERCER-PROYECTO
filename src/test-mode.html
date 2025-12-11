@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Motor de Grafos</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background: #0F1419;
+      color: #00D9FF;
+      padding: 40px;
+      margin: 0;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .test-section {
+      background: #1A1F26;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 2px solid #00D9FF;
+    }
+    h1 { color: #7FFF00; }
+    h2 { color: #00D9FF; margin-top: 0; }
+    pre {
+      background: #000;
+      padding: 15px;
+      border-radius: 5px;
+      overflow-x: auto;
+      color: #B0B8C1;
+    }
+    .success { color: #7FFF00; font-weight: bold; }
+    .error { color: #FF4655; font-weight: bold; }
+    .back-btn {
+      background: rgba(0, 217, 255, 0.1);
+      border: 2px solid #00D9FF;
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .back-btn:hover {
+      background: #00D9FF;
+      color: #0F1419;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🧪 TEST MOTOR DE GRAFOS - TACTICBOARD PRO</h1>
+    <button class="back-btn" onclick="window.location.href='index.html'">← Volver al Menú</button>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 1: Crear Grafo y Nodos</h2>
+    <pre id="test1">⏳ Ejecutando...</pre>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 2: Dijkstra - Camino Óptimo</h2>
+    <pre id="test2">⏳ Ejecutando...</pre>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 3: BFS - Componentes Conexas</h2>
+    <pre id="test3">⏳ Ejecutando...</pre>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 4: Centralidad</h2>
+    <pre id="test4">⏳ Ejecutando...</pre>
+  </div>
+
+  <div class="test-section">
+    <h2>Test 5: Triángulos de Posesión</h2>
+    <pre id="test5">⏳ Ejecutando...</pre>
+  </div>
+
+  <script type="module">
+    import { GrafoTactico } from './js/core/GrafoTactico.js';
+    import { NodoJugador } from './js/core/NodoJugador.js';
+    import { Dijkstra } from './js/core/Dijkstra.js';
+    import { BFS } from './js/core/BFS.js';
+    import { Centralidad } from './js/core/Centralidad.js';
+    import { Comunidades } from './js/core/Comunidades.js';
+
+    // Dar tiempo para que cargue la página
+    setTimeout(() => {
+      runTests();
+    }, 100);
+
+    function runTests() {
+      // ========================================
+      // TEST 1: Crear Grafo
+      // ========================================
+      const test1 = document.getElementById('test1');
+      try {
+        const grafo = new GrafoTactico();
+
+        // Crear jugadores
+        const messi = new NodoJugador('messi', 'Lionel Messi');
+        messi.setStats(95, 94, 35, 85);
+        messi.setPosicion(400, 300);
+        messi.agregarQuimica('busquets');
+        messi.agregarQuimica('alba');
+
+        const busquets = new NodoJugador('busquets', 'Sergio Busquets');
+        busquets.setStats(90, 60, 70, 60);
+        busquets.setPosicion(300, 400);
+        busquets.agregarQuimica('messi');
+        busquets.agregarQuimica('pique');
+
+        const alba = new NodoJugador('alba', 'Jordi Alba');
+        alba.setStats(82, 65, 75, 88);
+        alba.setPosicion(200, 300);
+        alba.agregarQuimica('messi');
+
+        const pique = new NodoJugador('pique', 'Gerard Piqué');
+        pique.setStats(75, 55, 88, 65);
+        pique.setPosicion(300, 500);
+        pique.agregarQuimica('busquets');
+
+        // Agregar al grafo
+        grafo.agregarNodo(messi);
+        grafo.agregarNodo(busquets);
+        grafo.agregarNodo(alba);
+        grafo.agregarNodo(pique);
+
+        // Construir conexiones
+        grafo.construirGrafoCompleto();
+
+        test1.innerHTML = `<span class="success">✓ Grafo creado exitosamente</span>
+        
+📊 Estadísticas:
+  • Nodos: ${grafo.numNodos()}
+  • Aristas: ${grafo.numAristas()}
+
+👥 Jugadores:
+${Array.from(grafo.nodos.values()).map(n => 
+  `  • ${n.nombre} (pase: ${n.stats.pase}, química con: ${n.quimicaCon.length} jugadores)`
+).join('\n')}`;
+
+        window.grafoTest = grafo; // Guardarlo para otros tests
+
+      } catch (error) {
+        test1.innerHTML = `<span class="error">✗ Error: ${error.message}</span>\n\n${error.stack}`;
+        console.error('Test 1 error:', error);
+      }
+
+      // ========================================
+      // TEST 2: Dijkstra
+      // ========================================
+      const test2 = document.getElementById('test2');
+      try {
+        const resultado = Dijkstra.encontrarCaminoOptimo(window.grafoTest, 'messi', 'pique');
+        
+        test2.innerHTML = `<span class="success">✓ Dijkstra ejecutado correctamente</span>
+
+📍 Búsqueda: Messi → Piqué
+
+${resultado.mensaje}
+
+🛤️  Camino encontrado:
+  ${resultado.ruta.map((id, i) => {
+    const nodo = window.grafoTest.obtenerNodo(id);
+    return `${i + 1}. ${nodo.nombre}`;
+  }).join('\n  ')}
+
+💰 Costo total: ${resultado.costoTotal.toFixed(2)}
+✅ Éxito: ${resultado.exito ? 'Sí' : 'No'}`;
+
+      } catch (error) {
+        test2.innerHTML = `<span class="error">✗ Error: ${error.message}</span>\n\n${error.stack}`;
+        console.error('Test 2 error:', error);
+      }
+
+      // ========================================
+      // TEST 3: BFS
+      // ========================================
+      const test3 = document.getElementById('test3');
+      try {
+        const resultado = BFS.encontrarComponentesConexas(window.grafoTest);
+        
+        test3.innerHTML = `<span class="success">✓ BFS ejecutado correctamente</span>
+
+${resultado.mensaje}
+
+🔗 Componentes encontradas:
+${resultado.componentes.map((comp, i) => 
+  `  Componente ${i + 1}: ${comp.map(id => window.grafoTest.obtenerNodo(id).nombre).join(', ')}`
+).join('\n')}`;
+
+      } catch (error) {
+        test3.innerHTML = `<span class="error">✗ Error: ${error.message}</span>\n\n${error.stack}`;
+        console.error('Test 3 error:', error);
+      }
+
+      // ========================================
+      // TEST 4: Centralidad
+      // ========================================
+      const test4 = document.getElementById('test4');
+      try {
+        const resultado = Centralidad.calcularCentralidad(window.grafoTest);
+        
+        const jugadorInfluyente = window.grafoTest.obtenerNodo(resultado.jugadorMasInfluyente);
+        
+        test4.innerHTML = `<span class="success">✓ Centralidad calculada correctamente</span>
+
+👑 Jugador más influyente: ${jugadorInfluyente.nombre}
+
+📊 Centralidad de Grado (número de conexiones):
+${Object.entries(resultado.centralidadGrado)
+  .sort((a, b) => b[1] - a[1])
+  .map(([id, grado]) => {
+    const nodo = window.grafoTest.obtenerNodo(id);
+    return `  • ${nodo.nombre}: ${grado} conexiones`;
+  }).join('\n')}`;
+
+      } catch (error) {
+        test4.innerHTML = `<span class="error">✗ Error: ${error.message}</span>\n\n${error.stack}`;
+        console.error('Test 4 error:', error);
+      }
+
+      // ========================================
+      // TEST 5: Triángulos
+      // ========================================
+      const test5 = document.getElementById('test5');
+      try {
+        const resultado = Comunidades.detectarTriangulos(window.grafoTest);
+        
+        test5.innerHTML = `<span class="success">✓ Detección de triángulos completada</span>
+
+${resultado.mensaje}
+
+${resultado.triangulos.length > 0 
+  ? '🔺 Triángulos de posesión encontrados:\n' + resultado.triangulos.map((tri, i) => {
+      const nombres = tri.map(id => window.grafoTest.obtenerNodo(id).nombre);
+      return `  ${i + 1}. ${nombres.join(' ↔ ')}`;
+    }).join('\n')
+  : '⚠️  No se encontraron triángulos de posesión'}
+
+ℹ️  Los triángulos representan grupos de 3 jugadores que forman
+   circuitos cerrados de pases, ideal para mantener posesión.`;
+
+      } catch (error) {
+        test5.innerHTML = `<span class="error">✗ Error: ${error.message}</span>\n\n${error.stack}`;
+        console.error('Test 5 error:', error);
+      }
+    }
+  </script>
+</body>
+</html>

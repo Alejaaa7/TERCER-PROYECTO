@@ -1,0 +1,164 @@
+{
+  "jugadores": [
+    {
+      "id": "messi",
+      "nombre": "Lionel Messi",
+      "posicion_default": "DC",
+      "stats": { "pase": 95, "remate": 94, "defensa": 35, "velocidad": 85 },
+      "nacionalidad": "Argentina",
+      "equipo": "Inter Miami"
+    },
+    {
+      "id": "cristiano",
+      "nombre": "Cristiano Ronaldo",
+      "posicion_default": "DC",
+      "stats": { "pase": 82, "remate": 93, "defensa": 34, "velocidad": 84 },
+      "nacionalidad": "Portugal",
+      "equipo": "Al-Nassr"
+    },
+    {
+      "id": "mbappe",
+      "nombre": "Kylian Mbappé",
+      "posicion_default": "EI",
+      "stats": { "pase": 83, "remate": 91, "defensa": 36, "velocidad": 97 },
+      "nacionalidad": "Francia",
+      "equipo": "Real Madrid"
+    },
+    {
+      "id": "haaland",
+      "nombre": "Erling Haaland",
+      "posicion_default": "DC",
+      "stats": { "pase": 75, "remate": 95, "defensa": 43, "velocidad": 89 },
+      "nacionalidad": "Noruega",
+      "equipo": "Manchester City"
+    },
+    {
+      "id": "debruyne",
+      "nombre": "Kevin De Bruyne",
+      "posicion_default": "MC",
+      "stats": { "pase": 94, "remate": 88, "defensa": 64, "velocidad": 76 },
+      "nacionalidad": "Bélgica",
+      "equipo": "Manchester City"
+    },
+    {
+      "id": "modric",
+      "nombre": "Luka Modrić",
+      "posicion_default": "MC",
+      "stats": { "pase": 91, "remate": 76, "defensa": 72, "velocidad": 74 },
+      "nacionalidad": "Croacia",
+      "equipo": "Real Madrid"
+    },
+    {
+      "id": "vandijk",
+      "nombre": "Virgil van Dijk",
+      "posicion_default": "DFC",
+      "stats": { "pase": 73, "remate": 60, "defensa": 92, "velocidad": 77 },
+      "nacionalidad": "Países Bajos",
+      "equipo": "Liverpool"
+    },
+    {
+      "id": "benzema",
+      "nombre": "Karim Benzema",
+      "posicion_default": "DC",
+      "stats": { "pase": 83, "remate": 90, "defensa": 40, "velocidad": 78 },
+      "nacionalidad": "Francia",
+      "equipo": "Al-Ittihad"
+    },
+    {
+      "id": "neymar",
+      "nombre": "Neymar Jr",
+      "posicion_default": "EI",
+      "stats": { "pase": 87, "remate": 87, "defensa": 36, "velocidad": 87 },
+      "nacionalidad": "Brasil",
+      "equipo": "Al-Hilal"
+    },
+    {
+      "id": "salah",
+      "nombre": "Mohamed Salah",
+      "posicion_default": "ED",
+      "stats": { "pase": 82, "remate": 89, "defensa": 45, "velocidad": 90 },
+      "nacionalidad": "Egipto",
+      "equipo": "Liverpool"
+    },
+    {
+      "id": "lewandowski",
+      "nombre": "Robert Lewandowski",
+      "posicion_default": "DC",
+      "stats": { "pase": 79, "remate": 92, "defensa": 44, "velocidad": 78 },
+      "nacionalidad": "Polonia",
+      "equipo": "Barcelona"
+    },
+    {
+      "id": "courtois",
+      "nombre": "Thibaut Courtois",
+      "posicion_default": "POR",
+      "stats": { "pase": 68, "remate": 45, "defensa": 89, "velocidad": 60 },
+      "nacionalidad": "Bélgica",
+      "equipo": "Real Madrid"
+    },
+    {
+      "id": "kante",
+      "nombre": "N'Golo Kanté",
+      "posicion_default": "MCD",
+      "stats": { "pase": 77, "remate": 66, "defensa": 87, "velocidad": 77 },
+      "nacionalidad": "Francia",
+      "equipo": "Al-Ittihad"
+    },
+    {
+      "id": "busquets",
+      "nombre": "Sergio Busquets",
+      "posicion_default": "MCD",
+      "stats": { "pase": 90, "remate": 60, "defensa": 70, "velocidad": 60 },
+      "nacionalidad": "España",
+      "equipo": "Inter Miami"
+    },
+    {
+      "id": "alba",
+      "nombre": "Jordi Alba",
+      "posicion_default": "LI",
+      "stats": { "pase": 82, "remate": 65, "defensa": 75, "velocidad": 88 },
+      "nacionalidad": "España",
+      "equipo": "Inter Miami"
+    },
+    {
+      "id": "ramos",
+      "nombre": "Sergio Ramos",
+      "posicion_default": "DFC",
+      "stats": { "pase": 72, "remate": 65, "defensa": 88, "velocidad": 68 },
+      "nacionalidad": "España",
+      "equipo": "Sevilla"
+    },
+    {
+      "id": "neuer",
+      "nombre": "Manuel Neuer",
+      "posicion_default": "POR",
+      "stats": { "pase": 70, "remate": 40, "defensa": 91, "velocidad": 58 },
+      "nacionalidad": "Alemania",
+      "equipo": "Bayern Munich"
+    },
+    {
+      "id": "son",
+      "nombre": "Son Heung-min",
+      "posicion_default": "EI",
+      "stats": { "pase": 80, "remate": 87, "defensa": 43, "velocidad": 88 },
+      "nacionalidad": "Corea del Sur",
+      "equipo": "Tottenham"
+    },
+    {
+      "id": "vinicius",
+      "nombre": "Vinícius Jr",
+      "posicion_default": "EI",
+      "stats": { "pase": 78, "remate": 83, "defensa": 29, "velocidad": 95 },
+      "nacionalidad": "Brasil",
+      "equipo": "Real Madrid"
+    },
+    {
+      "id": "pedri",
+      "nombre": "Pedri",
+      "posicion_default": "MC",
+      "stats": { "pase": 88, "remate": 72, "defensa": 59, "velocidad": 78 },
+      "nacionalidad": "España",
+      "equipo": "Barcelona"
+    }
+  ]
+}

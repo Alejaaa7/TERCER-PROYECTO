@@ -1,0 +1,49 @@
+{
+  "nombre": "Clásico - Barcelona vs Real Madrid (Ejemplo)",
+  "fecha": "2024-03-10",
+  "resultado": "2-1",
+  "equipos": {
+    "barcelona": {
+      "nombre": "FC Barcelona",
+      "alineacion": ["bar_jamal","bar_raphina","bar_balde","bar_lewandowski"],
+      "jugadores": [
+        { "id": "bar_jamal", "nombre": "Jamal", "posicion": { "x": 20, "y": 40 }, "stats": { "pase": 72, "remate": 60, "defensa": 55, "velocidad": 68 } },
+        { "id": "bar_raphina", "nombre": "Raphina", "posicion": { "x": 22, "y": 50 }, "stats": { "pase": 75, "remate": 62, "defensa": 58, "velocidad": 66 } },
+        { "id": "bar_balde", "nombre": "Balde", "posicion": { "x": 18, "y": 60 }, "stats": { "pase": 82, "remate": 58, "defensa": 50, "velocidad": 70 } },
+        { "id": "bar_lewandowski", "nombre": "Lewandowski", "posicion": { "x": 20, "y": 50 }, "stats": { "pase": 68, "remate": 74, "defensa": 45, "velocidad": 88 } },
+        { "id": "bar_j5", "nombre": "Gavi", "posicion": { "x": 30, "y": 55 }, "stats": { "pase": 70, "remate": 60, "defensa": 52, "velocidad": 75 } },
+        { "id": "bar_j6", "nombre": "Ferran", "posicion": { "x": 28, "y": 45 }, "stats": { "pase": 66, "remate": 70, "defensa": 50, "velocidad": 82 } },
+        { "id": "bar_j7", "nombre": "Kounde", "posicion": { "x": 15, "y": 50 }, "stats": { "pase": 68, "remate": 55, "defensa": 80, "velocidad": 72 } },
+        { "id": "bar_j8", "nombre": "Pique", "posicion": { "x": 12, "y": 60 }, "stats": { "pase": 70, "remate": 50, "defensa": 82, "velocidad": 60 } },
+        { "id": "bar_j9", "nombre": "Ter Stegen", "posicion": { "x": 5, "y": 50 }, "stats": { "pase": 68, "remate": 30, "defensa": 88, "velocidad": 40 } },
+        { "id": "bar_j10", "nombre": "Lewandowski", "posicion": { "x": 40, "y": 50 }, "stats": { "pase": 76, "remate": 90, "defensa": 40, "velocidad": 72 } },
+        { "id": "bar_j11", "nombre": "Alba", "posicion": { "x": 10, "y": 35 }, "stats": { "pase": 74, "remate": 45, "defensa": 75, "velocidad": 78 } }
+      ],
+      "pases": [
+        { "origen": "bar_j1", "destino": "bar_j2", "cantidad": 7 },
+        { "origen": "bar_j2", "destino": "bar_j3", "cantidad": 6 }
+      ]
+    },
+    "realmadrid": {
+      "nombre": "Real Madrid",
+      "alineacion": ["rm_mbappe","rm_rodrygo","rm_vinicius","rm_bellingham"],
+      "jugadores": [
+        { "id": "rm_mbappe", "nombre": "K. Mbappé", "posicion": { "x": 80, "y": 40 }, "stats": { "pase": 72, "remate": 55, "defensa": 70, "velocidad": 72 } },
+        { "id": "rm_rodrygo", "nombre": "Rodrygo", "posicion": { "x": 78, "y": 50 }, "stats": { "pase": 88, "remate": 60, "defensa": 58, "velocidad": 62 } },
+        { "id": "rm_vinicius", "nombre": "Vinicius", "posicion": { "x": 82, "y": 60 }, "stats": { "pase": 86, "remate": 58, "defensa": 60, "velocidad": 64 } },
+        { "id": "rm_bellingham", "nombre": "Bellingham", "posicion": { "x": 80, "y": 50 }, "stats": { "pase": 82, "remate": 90, "defensa": 50, "velocidad": 70 } },
+        { "id": "rm_j5", "nombre": "Valverde", "posicion": { "x": 70, "y": 55 }, "stats": { "pase": 74, "remate": 65, "defensa": 60, "velocidad": 80 } },
+        { "id": "rm_j6", "nombre": "Militao", "posicion": { "x": 85, "y": 55 }, "stats": { "pase": 68, "remate": 50, "defensa": 80, "velocidad": 70 } },
+        { "id": "rm_j7", "nombre": "Alaba", "posicion": { "x": 85, "y": 45 }, "stats": { "pase": 75, "remate": 60, "defensa": 78, "velocidad": 68 } },
+        { "id": "rm_j8", "nombre": "Courtois", "posicion": { "x": 95, "y": 50 }, "stats": { "pase": 60, "remate": 30, "defensa": 88, "velocidad": 35 } },
+        { "id": "rm_j9", "nombre": "Carlo", "posicion": { "x": 88, "y": 30 }, "stats": { "pase": 70, "remate": 44, "defensa": 70, "velocidad": 66 } },
+        { "id": "rm_j10", "nombre": "Rodrygo", "posicion": { "x": 60, "y": 50 }, "stats": { "pase": 74, "remate": 78, "defensa": 48, "velocidad": 82 } },
+        { "id": "rm_j11", "nombre": "Mendy", "posicion": { "x": 85, "y": 30 }, "stats": { "pase": 70, "remate": 40, "defensa": 76, "velocidad": 76 } }
+      ],
+      "pases": [
+        { "origen": "rm_j2", "destino": "rm_j4", "cantidad": 10 },
+        { "origen": "rm_j1", "destino": "rm_j2", "cantidad": 8 }
+      ]
+    }
+  }
+}

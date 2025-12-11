@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Analista - TacticBoard Pro</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/analista.css">
+</head>
+<body>
+  <div class="mode-header">
+    <button class="back-btn" onclick="window.location.href='index.html'">← MENÚ</button>
+    <h2>📊 DATALAB DE ANÁLISIS</h2>
+    <button id="toggle-vista" class="vista-btn">🔄 Vista Aérea</button>
+  </div>
+
+
+
+    <!-- Panel Lateral Derecho - Info del Jugador -->
+  <div class="panel-lateral panel-derecho" id="panel-jugador">
+    <div class="panel-header">
+      <h3>Selecciona un Jugador</h3>
+    </div>
+    <div class="panel-content">
+      <p>Haz click en un jugador del campo para ver sus estadísticas</p>
+    </div>
+  </div>
+
+  <!-- Panel Izquierdo -->
+  <div class="panel-lateral panel-izquierdo">
+    <div class="panel-section">
+      <h3>Partidos Disponibles</h3>
+      <select id="selector-partido" class="selector">
+        <option value="argentina-francia">Argentina vs Francia (Mundial 2022)</option>
+        <option value="barcelona-realmadrid">Barcelona vs Real Madrid (Clásico reciente)</option>
+        <option value="manchester-inter">Manchester City vs Inter (Champions 2023)</option>
+      </select>
+      <button id="btn-cargar-partido" class="btn-primary">Cargar Partido</button>
+    </div>
+    
+    <!-- Panel de jugador (izquierda) -->
+    <div id="panel-jugador-izq" class="panel-section" style="display: block;">
+      <div class="panel-header"><h3>Selecciona un Jugador</h3></div>
+      <div class="panel-content"><p>Haz click en un jugador del campo para ver sus estadísticas</p></div>
+    </div>
+
+  </div>
+
+  <!-- Panel Derecho - Resultados -->
+  <div class="panel-lateral panel-derecho panel-derecho-visible" id="panel-resultados">
+    <p>Cargando análisis...</p>
+  </div>
+
+  <canvas id="main-canvas"></canvas>
+
+  <script type="module">
+    import { Analista } from './js/modes/Analista.js';
+
+    const canvas = document.getElementById('main-canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    const analista = new Analista(canvas, ctx);
+    window.analista = analista;
+
+    // Event listeners
+    document.getElementById('btn-cargar-partido').addEventListener('click', () => {
+      const partido = document.getElementById('selector-partido').value;
+      analista.cargarPartido(partido);
+    });
+
+    document.getElementById('toggle-vista').addEventListener('click', (e) => {
+      analista.cambiarVista();
+      e.target.textContent = analista.vistaIsometrica ? '🔄 Vista Aérea' : '🔄 Vista Isométrica';
+    });
+
+    document.querySelectorAll('.viz-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.viz-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        analista.cambiarVisualizacion(btn.dataset.modo);
+      });
+    });
+
+    const chkConex = document.getElementById('mostrar-conexiones');
+    if (chkConex) {
+      chkConex.addEventListener('change', (e) => {
+        analista.mostrarConexiones = e.target.checked;
+      });
+    }
+  </script>
+</body>
+</html>

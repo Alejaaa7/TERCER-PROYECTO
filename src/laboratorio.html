@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Laboratorio Táctico - TacticBoard Pro</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/laboratorio.css">
+</head>
+<body>
+  <!-- Header -->
+  <div class="mode-header">
+    <button class="back-btn" onclick="window.location.href='index.html'">← MENÚ</button>
+    <h2>🔬 LABORATORIO TÁCTICO</h2>
+    <div class="header-info">
+      <button id="toggle-vista" class="vista-btn">🔄 Vista Aérea</button>
+      <span id="num-jugadores">11 Jugadores</span>
+      <span id="formacion-actual">4-3-3</span>
+    </div>
+  </div>
+
+  <!-- Panel Lateral Izquierdo - Controles -->
+  <div class="panel-lateral panel-izquierdo">
+    <div class="panel-section">
+      <h3>Formaciones</h3>
+      <select id="selector-formacion" class="selector">
+        <option value="4-3-3">4-3-3 (Ataque)</option>
+        <option value="4-4-2">4-4-2 (Clásico)</option>
+        <option value="3-5-2">3-5-2 (Defensivo)</option>
+        <option value="4-2-3-1">4-2-3-1 (Moderno)</option>
+      </select>
+      <button id="btn-cargar-formacion" class="btn-primary">Cargar Formación</button>
+    </div>
+
+    <div class="panel-section">
+      <h3>Simulador de Jugadas</h3>
+      <label>Jugador Inicial:</label>
+      <select id="jugador-inicio" class="selector">
+        <option value="">Seleccionar...</option>
+      </select>
+      
+      <label>Jugador Objetivo:</label>
+      <select id="jugador-objetivo" class="selector">
+        <option value="">Seleccionar...</option>
+      </select>
+      
+      <button id="btn-simular" class="btn-success">⚡ SIMULAR JUGADA</button>
+    </div>
+
+    <div class="panel-section">
+      <h3>Opciones</h3>
+      <label class="checkbox-label">
+        <input type="checkbox" id="mostrar-conexiones">
+        Mostrar Conexiones
+      </label>
+      <label class="checkbox-label">
+        <input type="checkbox" id="mostrar-nombres" checked>
+        Mostrar Nombres
+      </label>
+    </div>
+  </div>
+
+  <!-- Panel Lateral Derecho - Info del Jugador -->
+  <div class="panel-lateral panel-derecho" id="panel-jugador">
+    <div class="panel-header">
+      <h3>Selecciona un Jugador</h3>
+    </div>
+    <div class="panel-content">
+      <p>Haz click en un jugador del campo para ver sus estadísticas</p>
+    </div>
+  </div>
+
+  <!-- Panel de Resultado de Simulación -->
+  <div class="panel-resultado" id="resultado-simulacion">
+    <!-- Se llenará dinámicamente -->
+  </div>
+
+  <!-- Canvas Principal -->
+  <canvas id="main-canvas"></canvas>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { Laboratorio } from './js/modes/Laboratorio.js';
+
+    // Inicializar
+    const canvas = document.getElementById('main-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Ajustar tamaño
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Crear instancia del modo
+    const laboratorio = new Laboratorio(canvas, ctx);
+    window.laboratorio = laboratorio; // Exponer globalmente
+
+    // Event listeners para controles
+    document.getElementById('btn-cargar-formacion').addEventListener('click', () => {
+      const formacion = document.getElementById('selector-formacion').value;
+      laboratorio.cargarFormacion(formacion);
+      actualizarSelectores();
+    });
+
+    document.getElementById('toggle-vista').addEventListener('click', (e) => {
+      laboratorio.cambiarVista();
+      e.target.textContent = laboratorio.vistaIsometrica ? '🔄 Vista Aérea' : '🔄 Vista Isométrica';
+    });
+
+    document.getElementById('btn-simular').addEventListener('click', () => {
+      const inicio = document.getElementById('jugador-inicio').value;
+      const objetivo = document.getElementById('jugador-objetivo').value;
+
+      if (!inicio || !objetivo) {
+        alert('Debes seleccionar ambos jugadores');
+        return;
+      }
+
+      if (inicio === objetivo) {
+        alert('Los jugadores deben ser diferentes');
+        return;
+      }
+
+      laboratorio.simularJugada(inicio, objetivo);
+    });
+
+    // Actualizar selectores con los jugadores actuales
+    function actualizarSelectores() {
+      const selectInicio = document.getElementById('jugador-inicio');
+      const selectObjetivo = document.getElementById('jugador-objetivo');
+
+      selectInicio.innerHTML = '<option value="">Seleccionar...</option>';
+      selectObjetivo.innerHTML = '<option value="">Seleccionar...</option>';
+
+      for (const nodo of laboratorio.grafo.nodos.values()) {
+        const option1 = document.createElement('option');
+        option1.value = nodo.id;
+        option1.textContent = nodo.nombre;
+        selectInicio.appendChild(option1);
+
+        const option2 = document.createElement('option');
+        option2.value = nodo.id;
+        option2.textContent = nodo.nombre;
+        selectObjetivo.appendChild(option2);
+      }
+
+      // Actualizar contador
+      document.getElementById('num-jugadores').textContent = 
+        `${laboratorio.grafo.numNodos()} Jugadores`;
+    }
+
+    // Actualizar al cargar
+    setTimeout(() => {
+      actualizarSelectores();
+    }, 500);
+
+    // Checkboxes: conectar a comportamiento del modo
+    const chkConex = document.getElementById('mostrar-conexiones');
+    const chkNombres = document.getElementById('mostrar-nombres');
+
+    if (chkConex) {
+      chkConex.addEventListener('change', (e) => {
+        laboratorio.mostrarConexiones = e.target.checked;
+      });
+    }
+
+    if (chkNombres) {
+      chkNombres.addEventListener('change', (e) => {
+        laboratorio.mostrarNombres = e.target.checked;
+      });
+    }
+  </script>
+</body>
+</html>

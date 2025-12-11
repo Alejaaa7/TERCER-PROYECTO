@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Modo Reto - TacticBoard Pro</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/reto.css">
+</head>
+<body>
+  <div class="mode-header">
+    <button class="back-btn" onclick="window.location.href='index.html'">← MENÚ</button>
+    <h2>⚡ MODO RETO</h2>
+    <button id="toggle-vista" class="vista-btn">🔄 Vista Aérea</button>
+  </div>
+
+  <div class="panel-central visible" id="panel-instrucciones"></div>
+  <div class="panel-lateral panel-derecho" id="panel-secuencia"></div>
+  <div class="panel-central panel-resultado" id="panel-resultado"></div>
+
+  <canvas id="main-canvas"></canvas>
+
+  <script type="module">
+    import { Reto } from './js/modes/Reto.js';
+
+    const canvas = document.getElementById('main-canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    const reto = new Reto(canvas, ctx);
+    window.reto = reto;
+
+    // Event delegation para botones dinámicos
+    document.body.addEventListener('click', (e) => {
+      if (e.target.id === 'btn-iniciar-puzzle') {
+        document.getElementById('panel-instrucciones').classList.remove('visible');
+        reto.iniciarSeleccion();
+      } else if (e.target.id === 'btn-deshacer') {
+        reto.deshacerUltimoClick();
+      } else if (e.target.id === 'btn-verificar') {
+        reto.verificarSolucion();
+      } else if (e.target.id === 'btn-reiniciar') {
+        reto.reiniciarPuzzle();
+      } else if (e.target.id === 'btn-reintentar') {
+        document.getElementById('panel-resultado').classList.remove('visible');
+        reto.reiniciarPuzzle();
+      } else if (e.target.id === 'toggle-vista') {
+        reto.cambiarVista();
+        e.target.textContent = reto.vistaIsometrica ? '🔄 Vista Aérea' : '🔄 Vista Isométrica';
+      }
+    });
+  </script>
+</body>
+</html>

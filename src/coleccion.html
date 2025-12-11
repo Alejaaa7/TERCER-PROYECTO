@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Colección</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/coleccion.css">
+</head>
+<body>
+    <div class="mode-header">
+        <button class="back-btn" onclick="window.location.href='index.html' ">← MENÚ</button>
+        <h2>COLECCIÓN DE JUGADORES</h2>
+        <div class="header-stats">
+            <span id="total-jugadores">20 Jugadores</span>
+            <span id="equipos-disponibles">10 Equipos</span>
+        </div>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filtros-container">
+        <select id="filtro-equipo" class="selector">
+            <option value="todos">Todos los Equipos</option>
+            <option value="barcelona">Barcelona</option>
+            <option value="real-madrid">Real Madrid</option>
+            <option value="manchester-city">Manchester City</option>
+            <option value="inter-miami">Inter Miami</option>
+            <option value="Liverpool">Liverpool</option>
+            <option value="psg">PSG</option>
+        </select>
+
+        <select id="filtro-posicion" class="selector">
+            <option value="todos">Todas las Posiciones</option>
+            <option value="POR">Portero</option>
+            <option value="DFC">Defensa</option>
+            <option value="MC">Centrocampista</option>
+            <option value="DC">Delantero</option>
+        </select>
+
+        <input type="text" id="buscar-jugador" class="search-input" placeholder="🔍 Buscar jugador...">
+    </div>
+
+    <!-- Grid de jugadores -->
+    <div class="jugadores-grid" id="jugadores-grid">
+        <!-- Se llenará dinámicamente -->
+    </div>
+
+    <!-- Modal del Detalle -->
+    <div class="modal-overlay" id="modal-jugador">
+        <div class="modal-content">
+            <button class="modal-close" onclick="cerrarModal()">x</button>
+            <div id="modal-body">
+                <!-- Se llenará dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { DataLoader } from './js/utils/DataLoader.js';
+
+        let jugadoresData = [];
+        let jugadoresFiltrados = [];
+
+        // Cargar Datos
+        async function inicializar() {
+            const data = await DataLoader.cargarJugadores();
+            if (data && data.jugadores) {
+                jugadoresData = data.jugadores;
+                jugadoresFiltrados = [...jugadoresData];
+                renderizarJugadores();
+                actualizarEstadisticas();
+            }
+        }
+
+        function renderizarJugadores() {
+            const grid = document.getElementById('jugadores-grid');
+            grid.innerHTML = '';
+
+            jugadoresFiltrados.forEach(jugador => {
+                const card = crearCardJugador(jugador);
+                grid.appendChild(card);
+            });
+        }
+
+        function crearCardJugador(jugador) {
+            const card = document.createElement('div');
+            card.className = 'jugador-card';
+            card.onclick = () => mostrarDetalleJugador(jugador);
+
+            const overall = Math.round((jugador.stats.pase + jugador.stats.remate + jugador.stats.defensa + jugador.stats.velocidad) / 4);
+
+            card.innerHTML = `
+                <div class="card-header">
+                    <span class="overall ${getOverallClass(overall)}">${overall}</span>
+                    <span class="posicion">${jugador.posicion_default}</span>
+                </div>
+                <div class="card-avatar">
+                    <img src="assets/sprites/jugadores/${jugador.id}.png"
+                        alt="${jugador.nombre}"
+                        class="avatar-sprite"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="avatar-placeholder" style="display: none;">${jugador.nombre.charAt(0)}</div>
+                </div>
+                <div class="card-info">
+                    <h3>${jugador.nombre}</h3>
+                    <p class="equipo">${jugador.equipo}</p>
+                    <div class="stats-mini">
+                        <div class="stat-mini">
+                            <span class="stat-label">PAS</span>
+                            <span class="stat-value">${jugador.stats.pase}</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-label">REM</span>
+                            <span class="stat-value">${jugador.stats.remate}</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-label">DEF</span>
+                            <span class="stat-value">${jugador.stats.defensa}</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-label">VEL</span>
+                            <span class="stat-value">${jugador.stats.velocidad}</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            return card;
+        }
+
+        function getOverallClass(overall) {
+            if (overall >= 90) return 'overall-legendary';
+            if (overall >= 80) return 'overall-elite';
+            if (overall >= 70) return 'overall-good';
+            return 'overall-normal';
+        }
+
+        function mostrarDetalleJugador(jugador) {
+            const modal = document.getElementById('modal-jugador');
+            const body = document.getElementById('modal-body');
+
+            const overall = Math.round((jugador.stats.pase + jugador.stats.remate + jugador.stats.defensa + jugador.stats.velocidad) / 4);
+
+            body.innerHTML = `
+                <div class="modal-header">
+                    <div class="modal-avatar">
+                        <img src="assets/sprites/jugadores/${jugador.id}.png"
+                        alt="${jugador.nombre}"
+                        class="avatar-sprite-large"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="avatar-placeholder-large" style="display: none;">${jugador.nombre.charAt(0)}</div>
+                    </div>
+                    <div class="modal-header-info">
+                        <div class="overall-large ${getOverallClass(overall)}">${overall}</div>
+                        <h2>${jugador.nombre}</h2>
+                        <p class="nacionalidad">🌍 ${jugador.nacionalidad}</p>
+                        <p class="equipo-modal">⚽ ${jugador.equipo}</p>
+                    </div>
+                </div>
+
+                <div class="stats-detalladas">
+                    <h3>Estadísticas Detalladas</h3>
+                    <div class="stat-bar-container">
+                        <span class="stat-name">Pase</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" style="width: ${jugador.stats.pase}%"></div>
+                        </div>
+                        <span class="stat-number">${jugador.stats.pase}</span>
+                    </div>
+                    <div class="stat-bar-container">
+                        <span class="stat-name">Remate</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" style="width: ${jugador.stats.remate}%"></div>
+                        </div>
+                        <span class="stat-number">${jugador.stats.remate}</span>
+                    </div>
+                    <div class="stat-bar-container">
+                        <span class="stat-name">Defensa</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" style="width: ${jugador.stats.defensa}%"></div>
+                        </div>
+                        <span class="stat-number">${jugador.stats.defensa}</span>
+                    </div>
+                    <div class="stat-bar-container">
+                        <span class="stat-name">Velocidad</span>
+                        <div class="stat-bar">
+                            <div class="stat-fill" style="width: ${jugador.stats.velocidad}%"></div>
+                        </div>
+                        <span class="stat-number">${jugador.stats.velocidad}</span>
+                    </div>
+                </div>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        window.cerrarModal = function() {
+            document.getElementById('modal-jugador').classList.remove('active');
+        };
+
+        function actualizarEstadisticas() {
+            document.getElementById('total-jugadores').textContent = `${jugadoresData.length} Jugadores`;
+            const equiposUnicos = [...new Set(jugadoresData.map(j => j.equipo))];
+            document.getElementById('equipos-disponibles').textContent = `${equiposUnicos.length} Equipos`;
+        }
+
+        // Filtros
+        document.getElementById('filtro-equipo').addEventListener('change', aplicarFiltros);
+        document.getElementById('filtro-posicion').addEventListener('change', aplicarFiltros);
+        document.getElementById('buscar-jugador').addEventListener('input', aplicarFiltros);
+
+        function aplicarFiltros() {
+            const equipoFiltro = document.getElementById('filtro-equipo').value;
+            const posicionFiltro = document.getElementById('filtro-posicion').value;
+            const busqueda = document.getElementById('buscar-jugador').value.toLowerCase();
+
+            jugadoresFiltrados = jugadoresData.filter(jugador => {
+                const cumpleEquipo = equipoFiltro === 'todos' || jugador.equipo.toLowerCase().includes(equipoFiltro);
+                const cumplePosicion = posicionFiltro === 'todos' || jugador.posicion_default === posicionFiltro;
+                const cumpleBusqueda = busqueda === '' || jugador.nombre.toLowerCase().includes(busqueda);
+
+                return cumpleEquipo && cumplePosicion && cumpleBusqueda;
+            });
+
+            renderizarJugadores();
+        }
+
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') cerrarModal();
+        });
+
+        // Inicializar
+        inicializar();
+    </script>
+</body>
+</html>

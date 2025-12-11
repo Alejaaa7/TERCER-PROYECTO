@@ -1,0 +1,273 @@
+/* ========================================
+   RETO.CSS - Estilos Modo Reto
+   ======================================== */
+
+.panel-central {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  max-width: 90%;
+  max-height: 80vh;
+  background: linear-gradient(135deg, rgba(15, 20, 25, 0.98), rgba(26, 31, 38, 0.98));
+  backdrop-filter: blur(15px);
+  border-radius: 16px;
+  padding: 40px;
+  z-index: 200;
+  border: 3px solid var(--accent-green);
+  box-shadow: 0 20px 60px rgba(127, 255, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  overflow-y: auto;
+}
+
+.panel-central.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.panel-central h2 {
+  font-size: 2rem;
+  color: var(--accent-green);
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 0 0 20px rgba(127, 255, 0, 0.5);
+}
+
+/* Puzzle Info */
+.puzzle-info {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.objetivo {
+  background: rgba(127, 255, 0, 0.1);
+  border-left: 4px solid var(--accent-green);
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  color: var(--text-primary);
+}
+
+.contexto {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.contexto h4 {
+  font-size: 0.95rem;
+  color: var(--accent-cyan);
+  margin-bottom: 10px;
+}
+
+.contexto p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Secuencia */
+#secuencia-lista {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 8px;
+  min-height: 100px;
+  margin-bottom: 20px;
+}
+
+.secuencia-item {
+  padding: 8px;
+  margin-bottom: 5px;
+  background: rgba(127, 255, 0, 0.1);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+/* Botones de Acción */
+.botones-accion {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-secondary {
+  flex: 1;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: var(--text-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.btn-danger {
+  flex: 1;
+  padding: 10px;
+  background: rgba(255, 70, 85, 0.2);
+  border: 2px solid var(--accent-red);
+  color: var(--accent-red);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+  background: var(--accent-red);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+}
+
+/* Paneles laterales (asegurar que el panel derecho esté encima del canvas */
+.panel-lateral {
+  position: fixed;
+  top: 80px;
+  width: 320px;
+  max-height: calc(100vh - 100px);
+  background: linear-gradient(135deg, rgba(15, 20, 25, 0.95), rgba(26, 31, 38, 0.95));
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 150;
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 10px 40px rgba(0, 217, 255, 0.15);
+}
+
+.panel-derecho {
+  right: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(20px);
+}
+
+.panel-derecho-visible, .panel-derecho.visible {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(0);
+}
+
+/* Botones usados en reto */
+.btn-success {
+  flex: 1;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--accent-cyan), #0099CC);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-primary {
+  flex: 1;
+  padding: 10px;
+  background: linear-gradient(135deg, var(--accent-green), #5FCC00);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+/*Scrollbar personalizado para paneles */
+.panel-lateral::-webkit-scrollbar {
+  width: 8px;
+}
+.panel-lateral::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); border-radius: 4px; }
+.panel-lateral::-webkit-scrollbar-thumb { background: var(--accent-cyan); border-radius: 4px; }
+
+@media (max-width: 900px) {
+  .panel-lateral {
+    width: 90%;
+    left: 5%;
+    right: 5%;
+    top: auto;
+    bottom: 20px;
+    transform: translateY(0);
+  }
+}
+
+
+
+/* Resultado */
+.estrellas {
+  font-size: 3rem;
+  text-align: center;
+  margin: 20px 0;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.puntuacion {
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  color: var(--accent-green);
+  margin-bottom: 30px;
+  text-shadow: 0 0 30px rgba(127, 255, 0, 0.6);
+}
+
+/* Comparativa */
+.comparativa {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.columna {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.columna h4 {
+  font-size: 1rem;
+  color: var(--accent-cyan);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.ruta {
+  background: rgba(0, 217, 255, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.vista-btn { background: rgba(0, 0, 0, 0.15); border: 2px solid rgba(0, 217, 255, 0.15); padding: 8px 12px; border-radius: 8px; cursor: pointer; color: var(--text-primary);}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .comparativa {
+    grid-template-columns: 1fr;
+  }
+}

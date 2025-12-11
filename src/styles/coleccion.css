@@ -1,0 +1,399 @@
+/* COLECCION.CSS - Estilos Conexión */
+
+body {
+    overflow-y: auto;
+    padding-bottom: 50px;
+}
+
+.header-stats {
+    display: flex;
+    gap: 20px;
+    font-size: 0.9rem;
+}
+
+.header-stats span {
+    background: rgba(0, 217, 255, 0.1);
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 217, 255, 0.3);
+}
+
+/* Filtros */
+.filtros-container {
+    position: sticky;
+    top: 65px;
+    z-index: 100;
+    background: linear-gradient(180deg, var(--bg-primary), rgba(15, 20, 25, 0.95));
+    padding: 20px 40px;
+    display: flex;
+    gap: 15px;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.selector {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-radius: 10px;
+    border-color: var(--accent-cyan);
+}
+
+.search-input {
+    flex: 1;
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(0, 217, 255, 0.3);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--acent-cyan);
+    box-shadow: 0 0 15px rgba(0, 217, 255, 0.3);
+}
+
+/* Grid de Jugadores */
+.jugadores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 40px;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Card de Jugador */
+.jugador-card {
+    background: linear-gradient(13deg, rgba(26, 31, 38, 0.95), rgba(15, 20, 25, 0.95));
+    border: 2px solid rgba(0, 217, 255, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.jugador-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0, 217, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.jugador-card:hover::before {
+    left: 100%;
+}
+
+.jugador-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--acent-cyan);
+    box-shadow: 0 15px 40px rgba(0, 217, 255, 0.3);
+}
+
+/* Card Header */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.overall {
+    font-size: 2rem;
+    font-weight: 900;
+    padding: 8px 15px;
+    border-radius: 8px;
+    text-shadow: 0 0 10px currentColor;
+}
+
+.overall-legendary {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+}
+
+.overall-elite {
+    background: linear-gradient(135deg, #7FFF00, #32CD32);
+    color: #000;
+}
+
+.overall-good {
+  background: linear-gradient(135deg, #00D9FF, #0099CC);
+  color: #000;
+}
+
+.overall-normal {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.posicion {
+  background: rgba(0, 217, 255, 0.2);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Avatar */
+.card-avatar {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.avatar-placeholder {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--bg-primary);
+  box-shadow: 0 10px 30px rgba(0, 217, 255, 0.4);
+}
+
+/* Info Card */
+.card-info h3 {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-bottom: 5px;
+  color: var(--text-primary);
+}
+
+.card-info .equipo {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+/* Stats Mini */
+.stats-mini {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.stat-mini {
+  text-align: center;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 6px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, var(--bg-secondary), var(--bg-primary));
+  border: 3px solid var(--accent-cyan);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 60px rgba(0, 217, 255, 0.5);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 70, 85, 0.2);
+  border: 2px solid var(--accent-red);
+  color: var(--accent-red);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: var(--accent-red);
+  color: var(--bg-primary);
+  transform: rotate(90deg);
+}
+
+/* Modal Header */
+.modal-header {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+  align-items: center;
+}
+
+.modal-avatar {
+  flex-shrink: 0;
+}
+
+.avatar-placeholder-large {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-green));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--bg-primary);
+  box-shadow: 0 15px 40px rgba(0, 217, 255, 0.5);
+}
+
+.avatar-sprite {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    image-rendering: pixelated; /* para mantener el piel art nítido */
+    filter: drop-shadow(0 10px 30px rgba(0, 217, 255, 0.4));
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(127, 255, 0, 0.1));
+    padding: 10px;
+}
+
+.avatar-sprite-large {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 15px 40px rgba(0, 217, 255, 0.5));
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.1), rgba(127, 255, 0, 0.1));
+    padding: 15px;
+}
+
+.modal-header-info {
+  flex: 1;
+}
+
+.overall-large {
+  display: inline-block;
+  font-size: 3rem;
+  font-weight: 900;
+  padding: 10px 20px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 20px currentColor;
+}
+
+.modal-header-info h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: var(--accent-cyan);
+}
+
+.nacionalidad,
+.equipo-modal {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin: 5px 0;
+}
+
+/* Stats Detalladas */
+.stats-detalladas {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 25px;
+  border-radius: 12px;
+}
+
+.stats-detalladas h3 {
+  font-size: 1.3rem;
+  color: var(--accent-green);
+  margin-bottom: 20px;
+}
+
+.stat-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.stat-name {
+  min-width: 100px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stat-bar {
+  flex: 1;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stat-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
+  transition: width 0.5s ease;
+  border-radius: 6px;
+}
+
+.stat-number {
+  min-width: 40px;
+  text-align: right;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent-cyan);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .jugadores-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .modal-header {
+    flex-direction: column;
+    text-align: center;
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "formaciones": {
+    "4-3-3": {
+      "nombre": "4-3-3 (Ataque)",
+      "posiciones": [
+        { "id": "por", "nombre": "Portero", "x": 10, "y": 50 },
+        { "id": "dfd", "nombre": "Defensa Derecho", "x": 25, "y": 70 },
+        { "id": "dfcd1", "nombre": "Defensa Central 1", "x": 25, "y": 55 },
+        { "id": "dfcd2", "nombre": "Defensa Central 2", "x": 25, "y": 45 },
+        { "id": "dfi", "nombre": "Defensa Izquierdo", "x": 25, "y": 30 },
+        { "id": "mcd", "nombre": "Mediocentro Defensivo", "x": 45, "y": 50 },
+        { "id": "mcc1", "nombre": "Mediocentro 1", "x": 55, "y": 60 },
+        { "id": "mcc2", "nombre": "Mediocentro 2", "x": 55, "y": 40 },
+        { "id": "ed", "nombre": "Extremo Derecho", "x": 75, "y": 70 },
+        { "id": "dc", "nombre": "Delantero Centro", "x": 85, "y": 50 },
+        { "id": "ei", "nombre": "Extremo Izquierdo", "x": 75, "y": 30 }
+      ]
+    },
+    "4-4-2": {
+      "nombre": "4-4-2 (Clásico)",
+      "posiciones": [
+        { "id": "por", "nombre": "Portero", "x": 10, "y": 50 },
+        { "id": "dfd", "nombre": "Defensa Derecho", "x": 25, "y": 70 },
+        { "id": "dfcd1", "nombre": "Defensa Central 1", "x": 25, "y": 55 },
+        { "id": "dfcd2", "nombre": "Defensa Central 2", "x": 25, "y": 45 },
+        { "id": "dfi", "nombre": "Defensa Izquierdo", "x": 25, "y": 30 },
+        { "id": "md", "nombre": "Medio Derecho", "x": 50, "y": 70 },
+        { "id": "mcd1", "nombre": "Mediocentro 1", "x": 50, "y": 55 },
+        { "id": "mcd2", "nombre": "Mediocentro 2", "x": 50, "y": 45 },
+        { "id": "mi", "nombre": "Medio Izquierdo", "x": 50, "y": 30 },
+        { "id": "dc1", "nombre": "Delantero 1", "x": 80, "y": 55 },
+        { "id": "dc2", "nombre": "Delantero 2", "x": 80, "y": 45 }
+      ]
+    },
+    "3-5-2": {
+      "nombre": "3-5-2 (Defensivo)",
+      "posiciones": [
+        { "id": "por", "nombre": "Portero", "x": 10, "y": 50 },
+        { "id": "dfcd1", "nombre": "Defensa Central 1", "x": 25, "y": 60 },
+        { "id": "dfcd2", "nombre": "Defensa Central 2", "x": 25, "y": 50 },
+        { "id": "dfcd3", "nombre": "Defensa Central 3", "x": 25, "y": 40 },
+        { "id": "lid", "nombre": "Lateral Derecho", "x": 50, "y": 75 },
+        { "id": "mcd", "nombre": "Mediocentro Defensivo", "x": 50, "y": 50 },
+        { "id": "mcc1", "nombre": "Mediocentro 1", "x": 55, "y": 60 },
+        { "id": "mcc2", "nombre": "Mediocentro 2", "x": 55, "y": 40 },
+        { "id": "lii", "nombre": "Lateral Izquierdo", "x": 50, "y": 25 },
+        { "id": "dc1", "nombre": "Delantero 1", "x": 80, "y": 55 },
+        { "id": "dc2", "nombre": "Delantero 2", "x": 80, "y": 45 }
+      ]
+    },
+    "4-2-3-1": {
+      "nombre": "4-2-3-1 (Moderno)",
+      "posiciones": [
+        { "id": "por", "nombre": "Portero", "x": 10, "y": 50 },
+        { "id": "dfd", "nombre": "Defensa Derecho", "x": 25, "y": 70 },
+        { "id": "dfcd1", "nombre": "Defensa Central 1", "x": 25, "y": 55 },
+        { "id": "dfcd2", "nombre": "Defensa Central 2", "x": 25, "y": 45 },
+        { "id": "dfi", "nombre": "Defensa Izquierdo", "x": 25, "y": 30 },
+        { "id": "mcd1", "nombre": "Pivote 1", "x": 45, "y": 55 },
+        { "id": "mcd2", "nombre": "Pivote 2", "x": 45, "y": 45 },
+        { "id": "ed", "nombre": "Extremo Derecho", "x": 65, "y": 70 },
+        { "id": "mc", "nombre": "Mediapunta", "x": 65, "y": 50 },
+        { "id": "ei", "nombre": "Extremo Izquierdo", "x": 65, "y": 30 },
+        { "id": "dc", "nombre": "Delantero Centro", "x": 85, "y": 50 }
+      ]
+    }
+  }
+}

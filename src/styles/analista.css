@@ -1,0 +1,263 @@
+/* ========================================
+   ANALISTA.CSS - Estilos Modo Analista
+   ======================================== */
+
+.viz-btn {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  background: rgba(0, 217, 255, 0.1);
+  border: 2px solid rgba(0, 217, 255, 0.3);
+  color: var(--text-primary);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.viz-btn:hover {
+  background: rgba(0, 217, 255, 0.2);
+  border-color: var(--accent-cyan);
+  transform: translateX(5px);
+}
+
+.viz-btn.active {
+  background: linear-gradient(135deg, var(--accent-cyan), #0099CC);
+  border-color: var(--accent-cyan);
+  color: var(--bg-primary);
+  transform: translateX(5px);
+  box-shadow: 0 5px 15px rgba(0, 217, 255, 0.4);
+}
+
+/* Secciones de Análisis */
+.analisis-section {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  border-left: 4px solid var(--accent-cyan);
+}
+
+.analisis-section h3 {
+  font-size: 1rem;
+  color: var(--accent-cyan);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.analisis-section .destacado {
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent-green);
+  text-align: center;
+  margin: 10px 0;
+  text-shadow: 0 0 20px rgba(127, 255, 0, 0.5);
+}
+
+.analisis-section p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Ranking */
+.ranking {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.ranking-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.ranking-item:hover {
+  background: rgba(0, 217, 255, 0.1);
+}
+
+.ranking-item .pos {
+  min-width: 25px;
+  height: 25px;
+  background: var(--accent-cyan);
+  color: var(--bg-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.ranking-item .nombre {
+  flex: 1;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.ranking-item .valor {
+  min-width: 30px;
+  text-align: right;
+  font-weight: 700;
+  color: var(--accent-green);
+  font-size: 1rem;
+}
+
+/* Panel derecho visinle en Analista */
+.panel-derecho-visible {
+  opacity: 1 !important;
+  pointer-events: all !important;
+  display: block !important;
+}
+
+/* Paneles laterales */
+.panel-lateral {
+  position: fixed;
+  top: 80px;
+  width: 350px;
+  max-height: calc(100vh - 100px);
+  background: linear-gradient(135deg, rgba(15, 20, 25, 0.95), rgba(26, 31, 38, 0.95));
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 100;
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 10px 40px rgba(0, 217, 255, 0.2);
+}
+
+.panel-izquierdo {
+  margin-top: 100px;
+  left: 50px;
+}
+
+.panel-derecho {
+  right: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Panel de Jugador */
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--accent-cyan);
+}
+
+.panel-derecho.panel-derecho-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.panel-section {
+  margin-bottom: 25px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.panel-section:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Controles básicos usados en Analista */
+.selector {
+  width: 100%;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px solid rgba(0, 217, 255, 0.3);
+  border-radius: 6px;
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.selector:hover { border-color: var(--accent-cyan); }
+.selector:focus { outline: none; border-color: var(--accent-green); box-shadow: 0 0 10px rgba(127, 255, 0, 0.2); }
+
+.btn-primary {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: linear-gradient(135deg, var(--accent-cyan), #0099CC);
+  color: var(--bg-primary);
+}
+
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20 px rgba(0, 217, 255, 0.3); }
+
+.checkbox-label { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 8px; border-radius: 6px; transition: background 0.2s ease; }
+.checkbox-label:hover { background: rgba(0, 217, 255, 0.06); }
+.checkbox-label input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: var(--accent-cyan); }
+
+.vista-btn { background: rgba(0, 0, 0, 0.15); border: 2px solid rgba(0, 217, 255, 0.15); padding: 8px 12px; border-radius: 8px; cursor: pointer; color: var(--text-primary);}
+
+/* ===== Stat bars (panel jugador) ===== */
+.panel-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.stat-bar {
+  display: grid;
+  grid-template-columns: 1fr 120px 40px;
+  align-items: center;
+  gap: 10px;
+}
+.stat-bar span { color: var(--text-secondary); font-size: 0.9rem; }
+.bar {
+  height: 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.bar[role="progressbar"] { outline: none; }
+.fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-cyan), var(--accent-green));
+  border-radius: 8px 0 0 8px;
+  transition: width 420ms cubic-bezier(.2,.9,.2,1);
+  box-shadow: inset 0 -2px 6px rgba(0,0,0,0.25);
+}
+.stat-bar .value-label {
+  text-align: right;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Close button small style */
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 6px;
+}
+.close-btn:hover { background: rgba(255,255,255,0.03); color: var(--accent-cyan); }
